@@ -57,7 +57,9 @@ def search(city,date):
                 try:
                     pm=next(temp1 for temp1,temp2 in enumerate(temp) if temp2.endswith("pm"))
                     temp[pm]=temp[pm][:-2]
-                    for temp3 in range(am+1,pm+1):
+                    if int(temp[pm].split(':')[0])<12:
+                        temp[pm]=str((int(temp[pm].split(':')[0])+12)%24)+temp[pm][temp[pm].find(':'):]
+                    for temp3 in range(am+1,pm):
                         if int(temp[temp3].split(':')[0])<12:
                             temp[temp3]=str((int(temp[temp3].split(':')[0])+12)%24)+temp[temp3][temp[temp3].find(':'):]
                 except:
